@@ -7,11 +7,12 @@
               <dt>我的服务</dt>
               <dd><router-link to="/order">我的工单</router-link> </dd>
               <dd><router-link to="/todo">我的待办</router-link> </dd>
+              <dd><router-link to="/other">功能Demo</router-link> </dd>
           </dl>
         
       </div>
       <div>
-        <div style="line-height:50px;background:#CCC">{{route}}</div>
+        <div style="line-height:30px;background:#CCC">{{route}}</div>
         <div class="main-box">
               <router-view></router-view>
         </div>          
@@ -44,8 +45,8 @@ export default {
 .body {
     height: 100%;
     display: grid;
-    grid-template-rows: 100px 1fr;
-    grid-template-columns: 200px 1fr;
+    grid-template-rows: 30px 1fr;
+    grid-template-columns: 150px 1fr;
 }
 .main-box {
     padding: 10px;

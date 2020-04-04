@@ -18,7 +18,7 @@ export default {
   },
   methods:{
     orderProcess (event) {
-      console.log(event.data.info)
+      // console.log(event.data.info)
       this.arr.push(event.data.info)
     }
   },
@@ -26,7 +26,7 @@ export default {
     window.customEvent.addEvent("orderProcess", this.orderProcess); //添加事件
   },
   destroyed () {
-    console.log('destroyed');
+    // console.log('destroyed');
     window.customEvent.removeEvent("orderProcess",this.orderProcess)
   }
 }

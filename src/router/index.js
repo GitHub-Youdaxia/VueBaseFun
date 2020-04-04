@@ -35,6 +35,11 @@ export default new Router({
         path: '/todo',
         name: '我的待办',
         component: () => import('@/components/todo'),
+      },
+      {
+        path: '/other',
+        name: '功能Demo',
+        component: () => import('@/components/other'),
       }]
     },
   ]
