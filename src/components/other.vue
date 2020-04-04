@@ -2,11 +2,11 @@
   <div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="(item,index) in tabsData" :key="'index'+index" :label="item.title" :name="item.name">
-          {{item.name}}
-          {{item.title}}
+          <!-- {{item.name}}
+          {{item.title}} -->
           <component :is="item.name"></component>
         </el-tab-pane>
-    </el-tabs>      
+    </el-tabs>
   </div>
 </template>
 
