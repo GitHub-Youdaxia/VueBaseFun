@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input v-model="searchWord" @keyup.enter.native="query"></el-input>
+    <el-input placeholder="目前是写死的固定展开某几个节点" v-model="searchWord" @keyup.enter.native="query"></el-input>
      <el-button @click="query">查询</el-button>
      <!-- 网上有闭合所有节点的方法 -->
      <h4>动态加载</h4>
@@ -8,8 +8,9 @@
     <hr>
     <h4>固定数据</h4>
     <p>调用方法把一维数据转成树形</p>
+    <el-button @click="Array.from($refs.tree2.store._getAllNodes()).forEach(item => {item.expanded = false})">闭合所有树节点</el-button>
     <el-tree ref="tree2" :props="props" :data="AllData2" node-key="id"></el-tree>
-  </div>
+  </div>           
 </template>
 <script>
 export default {
@@ -150,7 +151,7 @@ export default {
       AllData2 = JSON.parse(JSON.stringify(AllData2))
       this.AllData2 = this.dealData([{ name: "全部", id: '0' },...AllData2])
       // this.AllData = [...level1];
-      console.log(this.AllData);
+      // console.log(this.AllData);
     }
   },
 };

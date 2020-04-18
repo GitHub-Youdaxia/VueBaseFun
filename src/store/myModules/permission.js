@@ -42,6 +42,7 @@ const state = {
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
+    // 在固定可以访问的路由上添加其他需要角色的路由
     state.routes = constantRoutes.concat(routes)
   }
 }
@@ -61,7 +62,12 @@ const actions = {
   },
   addRoutes ({ commit }, roles) {
     commit('SET_ROUTES', asyncRoutes)
-  }
+  },
+  // 写着玩的，把初始路由存进store中
+  initRoutes ({ commit }, roles) {
+    // SET_ROUTES 会把固定路由存进store中
+    commit('SET_ROUTES', [])
+  },
 }
 
 export default {

@@ -3,11 +3,17 @@
       <div>LOGO</div>
       <div><headerNav></headerNav></div>
       <div>
-          <dl>
-              <dt>我的服务</dt>
+          <dl v-for="(item, index) in permission_routes" :key="index + 'index'">
+              <dt v-if="!item.hidden"><router-link :to="item.path">{{item.name}}</router-link> </dt>
+              <template v-if="item.children && !item.hidden">
+                <dd v-for="(ele, index) in item.children" :key="'index'+index">
+                  <router-link :to="ele.path">{{ele.name}}</router-link> 
+                </dd>
+              </template>
+              <!-- <dd><router-link to="/other">功能Demo</router-link> </dd>
               <dd><router-link to="/order">我的工单</router-link> </dd>
               <dd><router-link to="/todo">我的待办</router-link> </dd>
-              <dd><router-link to="/other">功能Demo</router-link> </dd>
+              <dd><router-link to="/article">我的文章</router-link> </dd> -->
           </dl>
         
       </div>
@@ -22,6 +28,8 @@
 
 <script>
 import headerNav from './headerNav'
+import { mapGetters } from 'vuex'
+
 export default {
     name:'Layout',
     components:{headerNav},
@@ -37,6 +45,11 @@ export default {
             },
             deep:true
         }
+    },
+    computed: {
+      ...mapGetters([
+        'permission_routes',
+      ]),        
     }
 }
 </script>

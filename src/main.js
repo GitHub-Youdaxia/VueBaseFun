@@ -9,13 +9,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Cookies from 'vue-cookies'
 import store from './store'
 import myPlugin from './myPlugin'
+import  './permission'
 
 Vue.use(Cookies)
 
 Vue.use(myPlugin)
 
 Vue.use(ElementUI, {
-  size: Cookies.get('size') || 'medium' // set element-ui default size
+  size: Cookies.get('size') || 'small' // set element-ui default size
 })
 Vue.config.productionTip = false
 

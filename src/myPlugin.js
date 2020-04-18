@@ -11,7 +11,7 @@ MyPlugin.install = function (Vue, options) {
     // resolve 是一个函数，它返回请求被解析后得到的模块 id。
     // keys 也是一个函数，它返回一个数组，由所有可能被上下文模块处理的请求组成。
     // id 是上下文模块里面所包含的模块 id. 它可能在你使用 module.hot.accept 的时候被用到    
-    let contexts = require.context('./commonComponents', false, /\.vue$/)
+    let contexts = require.context('./components', false, /\.vue$/)
     // console.log(contexts.id);
     // console.log(contexts.keys());
     contexts.keys().forEach(component => {
