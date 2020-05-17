@@ -61,18 +61,22 @@ export default {
     },
     // 转成树形数据
     dealData(data) {
+      data.forEach(item => { item.namePath = '根节点' })
       data.forEach(item1 => {
         item1.children = []
         data.forEach(item2 => {
           if (item2.parentId === item1.id ) {
             item1.children.push(item2)
             item2.isChild=true
+            item2.namePath = item1.namePath + '.' + item2.name
           }
         })
         // 判断是否是叶子节点
         item1.children.length === 0 ? item1.leaf = true : item1.leaf = false
       });
-      return data.filter(item => !item.isChild)
+      let res = data.filter(item => !item.isChild)
+      console.log(res)
+      return res
     },
     getAllData () {
       // 第一层级数据
