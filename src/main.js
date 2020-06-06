@@ -20,6 +20,9 @@ Vue.use(ElementUI, {
 })
 Vue.config.productionTip = false
 
+
+import ExSwitch from '@/components/ExSwitch'
+Vue.component('ExSwitch', ExSwitch)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
