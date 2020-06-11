@@ -10,7 +10,7 @@ import Cookies from 'vue-cookies'
 import store from './store'
 import myPlugin from './myPlugin'
 import  './permission'
-
+import 'babel-polyfill'
 Vue.use(Cookies)
 
 Vue.use(myPlugin)

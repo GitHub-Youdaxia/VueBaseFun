@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Vmodel",
+  name: "vueExtend",
   title: "扩展elementUI switch组件",
   data() {
     var checkaaa = (rule, value, callback) => {
