@@ -75,3 +75,5 @@ initMVVM(vm)
 
 //初始化页面
 dep.notify();
+
+

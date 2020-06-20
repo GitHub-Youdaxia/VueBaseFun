@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>头尾固定加圣杯布局</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            flex-basis: 100px;
+            background-color: #CCC;
+            flex-shrink: 0;
+        }
+
+        .containt {
+            flex: 1;
+            overflow: auto;
+            background-color: paleturquoise;
+            display: flex;
+        }
+        .main-left {
+            flex-basis: 200px;
+            flex-shrink: 0;
+        }
+
+        .main-right {
+            flex-basis: 200px;
+            flex-shrink: 0;
+        }
+
+        .main-contain {
+            background-color: #006699;
+            flex-grow: 1;
+        }
+        footer {
+            flex-basis: 200px;
+            background: rebeccapurple;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <div class="containt">
+        <div class="main-left"></div>
+        <div class="main-contain"></div>
+        <div class="main-right"></div>
+    </div>
+    <footer></footer>
+</body>
+
+</html>

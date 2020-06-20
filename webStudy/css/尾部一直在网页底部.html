@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>尾部一直在网页底部</title>
+    <style>
+        *{padding: 0;margin: 0;}
+    html,body{height: 100%;}
+    body{
+        display: flex;flex-direction: column
+    }
+    header{
+        height: 100px;background-color: #CCC;flex-shrink: 0;
+    }
+    </style>
+</head>
+<body >
+    <header ></header>
+    <div style="flex-grow: 1;background-color: paleturquoise">
+       <div style="height: 500px;background-color: #aaa">
+            
+       </div>
+    </div>
+    <!-- position: fixed;left: 0;bottom: 0; -->
+    <footer style="height: 200px;background: rebeccapurple;flex-shrink: 0"></footer>
+</body>
+</html>

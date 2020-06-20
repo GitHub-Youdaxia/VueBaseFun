@@ -31,3 +31,21 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+// var fn1 = () => {
+//   console.log('fn1')
+// };
+// var fn2 = () => {
+//   console.log('fn2')
+// };
+// var fn3 = () => {
+//   console.log('fn3')
+// };
+// var fn4 = () => {
+//   console.log('fn4')
+// };
+// [fn1, fn2, fn3, fn4].reduceRight((total, current) => {
+//   return () => {
+//     current();
+//     total();
+//   }
+// })()

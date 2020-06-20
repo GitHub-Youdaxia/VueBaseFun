@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+
+    <style>
+        ul li {
+            height: 50px;
+            background: #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--  $('#aaa') 就是jquery dom对象          document.getElementById('aaa') 就是原生dom对象-->
+    <input type="text" id="con">
+    <button id="btn">按钮</button>
+    <ul id="aaa" class="aaa" style="position: relative;">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5
+
+
+        </li>
+    </ul>
+
+    <div style="height:2000px;position: relative;">
+        <button id="btn2" style="position: absolute; left: 100px;top:200px;">按钮</button>
+
+        <div style="height: 200px;overflow:auto;">
+            <div style="height: 400px;"></div>
+        </div>
+    </div>
+
+    <script>
+        //属性,事件,方法
+        //文档加载完后执行
+        // 备忘录
+        // 1.增删改查
+        // 2.jquery加动画效果 添加时从下往上显示出来
+        $(function () {
+
+            $("#btn").on("click", function () {
+                $("#aaa").append(`<li>hello${$('#con').val()}</li>`)
+
+            })
+
+            $('#aaa').on('click', 'li', function (event) {
+
+
+            });
+
+
+        })
+
+        function qingqiu() {
+            var defer = $.Deferred();
+            setTimeout(function () {
+                var data = {
+                    info: '数据'
+                };
+                defer.resolve(data);
+            }, 3000)
+            return defer.promise();
+        }
+    </script>
+</body>
+
+</html>

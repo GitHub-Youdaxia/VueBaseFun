@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend></legend>
+        <div id="big" class="box400 bg1 pd20">
+            <button id="tijiao">提交</button>
+
+        </div>
+    </fieldset>
+
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function(){
+            function xunhuan(){
+                $('body').trigger('step1');
+                for (let index = 0; index < 10000000000; index++) {
+                
+                }
+                $('body').trigger('step2');
+
+            }
+            $('body').on('step1',function(){
+                console.log('step1');
+            })
+            $('body').on('step2',function(){
+                console.log('step2');
+            })
+            xunhuan();
+        })
+        $(function(){
+            return;
+            $('body').on('qqq',function(){
+                $('#menuSearchParam').val(1);
+            })
+
+            $('#menuSearchParam').val(2);
+            $('body').trigger('qqq');
+
+        })
+        $(function () {
+            return;
+            $('#tijiao').on('click', function (event) {
+                alert()
+            });
+
+            //ajax的异步请求和定时器类似
+            console.log('1');
+            setTimeout(function () {
+                console.log('2');
+            }, 3000)
+            console.log('3');
+
+            console.log(1)
+            var data1=$.ajax({
+                url: "login1.html",
+                async: true,
+                success: function (html) {
+                    console.log('2');
+                }
+            });
+            console.log(data1);
+            console.log(3);
+
+
+            console.log(1)
+            var data2=$.ajax({
+                url: "login1.html",
+                async: false,
+            
+            });
+            console.log(data2);
+            console.log(3);
+
+
+
+
+            function xunhuan(){
+                for (let index = 0; index < 10000000000; index++) {
+                
+                }
+                console.log(2)
+            }
+            console.log(1)
+            xunhuan();
+            console.log(3)
+
+
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>

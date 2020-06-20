@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>事件委托(依赖事件冒泡)</legend>
+        <div id="big" class="box400 bg1 pd20">
+            <div id="middle" class="box300 bg2 pd20">
+                <div id="small" class="box200 bg3 pd20">
+                    <input id="input" type="text" name="" id="">
+                    <button id="tijiao">提交</button>
+                </div>
+            </div>
+
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>网页事件类型</legend>
+        <div>
+            input blur change click dblclick error focus focusin focusout keydown keypress keyup mousedown mouseenter mouseleave mousemove
+            mouseout mouseover mouseup resize scroll select submit
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>事件委托例子</legend>
+        <div>
+            <table id="table" class="table" border="1">
+                <tr>
+                    <td>aaaa</td>
+                    <td>aaaa</td>
+                    <td>aaaa</td>
+                    <td>aaaa2</td>
+                </tr>
+                <tr>
+                    <td>bbb</td>
+                    <td>bbb</td>
+                    <td>bbb</td>
+                    <td>bbb</td>
+                </tr>
+            </table>
+        </div>
+    </fieldset>
+
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+    <script>
+        function bbbb() {
+            alert('bbbb')
+        }
+        $(function () {
+            $.aaaa='aaaa';
+            window.aaaa=function() {
+                alert('aaaa')
+            }
+
+            document.querySelector('#table').addEventListener('click', function (event) {
+                console.log(event.target);
+                // alert('table')
+            }, false)
+
+            // $('#table').on('dblclick','tr',function(event){
+            //     console.log(event.currentTarget);
+            //     console.log(event.target);
+            //     alert('tr')
+            // });
+
+
+
+
+            $('#input').on('keydown', function (event) {
+                event.stopPropagation()
+            });
+            $(document).on('keydown', function (event) {
+                console.log(event);
+                if (event.keyCode == 118) {
+                    //重呼 F7
+                    console.log('F7');
+                } else if (event.keyCode == 120) {
+                    //光标定位到搜索栏 F9
+                    console.log('F9');
+
+                } else if (event.ctrlKey && event.keyCode == 37) {
+                    //向左切换标签页
+                    console.log('ctrl+左');
+
+                } else if (event.keyCode == 115) {
+                    $('#tijiao').click();
+                }
+            })
+
+            $('#tijiao').on('click', function (event) {
+                alert('点击提交了')
+            });
+            // $('#input').on('input', function (event) {
+            //     event.stopPropagation();
+            //     console.log($(this).val());
+            // });
+
+            // $('body').on('input', function (event) {
+            //     console.log('body的 input事件');
+            // });
+
+            // document.querySelector('#big').addEventListener('click', function (event) {
+            //     alert('big')
+            // }, false)
+
+            // document.querySelector('#middle').addEventListener('click', function (event) {
+            //     event.stopPropagation()
+
+            //     alert('middle')
+            // }, false)
+
+            // document.querySelector('#small').addEventListener('click', function (event) {
+            //     alert('small');
+            // }, false)
+
+
+
+            // document.querySelector('#big').addEventListener('click', function () {
+            //     alert('big')
+            // }, false)
+
+            // document.querySelector('#middle').addEventListener('click', function () {
+            //     alert('middle')
+            // }, false)
+
+            // document.querySelector('#small').addEventListener('click', function () {
+            //     alert('small')
+            // }, false)
+
+
+
+            // document.querySelector('#big').addEventListener('click', function () {
+            //     alert('buhuo big')
+            // }, true)
+            // document.querySelector('#middle').addEventListener('click', function () {
+            //     alert('buhuo middle')
+            // }, true)
+
+            // document.querySelector('#small').addEventListener('click', function () {
+            //     alert('buhuo small')
+            // }, true)
+
+            // $('#big').on('click', function (event) {
+            //     alert('big')
+            // });
+
+
+
+
+            // $('#big').on('click',function(event){
+            //     alert('big')
+            // });
+            // $('body').on('click',function(event){
+            //     alert('body')
+            // });
+            // $('html').on('click',function(event){
+            //     alert('html')
+            // });
+            // $(window).on('click',function(event){
+            //     alert('window')
+            // });
+            // $(document).on('click',function(event){
+            //     alert('document')
+            // });
+        })
+    </script>
+</body>
+
+</html>

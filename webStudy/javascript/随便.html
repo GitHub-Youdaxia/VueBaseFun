@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+
+    <style>
+        ul li {
+            height: 50px;
+            background: #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn">按钮</button>
+    <ul id="aaa">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5 <button>dd</button></li>
+    </ul>
+
+
+    <script>
+        //属性,事件,方法
+        //文档加载完后执行
+        $(function () {
+            // $("#aaa > li").on("click", function () {
+            //     console.log($(this).text());
+            // })
+            $("#btn").on("click",function(){
+                $("#aaa").append(`<li>hello${Math.random()*10}</li>`)
+            })
+            // $("#aaa").on("click",function(event){
+ 
+            //     console.log($(event.target).text());
+            //     // alert("123")
+            // })
+
+            $('#aaa').on('click','li',function(event){
+                console.log($(this));
+            });
+
+        })
+        // $(function () {
+        //     console.log(1);
+        // })
+        // $(function () {
+        //     console.log(2);
+
+        // })
+        // $(function () {
+        //     console.log(3);
+
+        // })
+        // $(function () {
+        //     console.log(4);
+
+        // })
+    </script>
+</body>
+
+</html>

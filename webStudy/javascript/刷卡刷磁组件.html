@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+    <input data-toggle="cardInput" type="text" id="input">
+    <input data-toggle="cardInput" type="text" id="input1">
+    <input data-toggle="cardInput" type="text" id="input2">
+    <input data-toggle="cardInput" type="text" id="input3">
+    <input data-toggle="cardInput" type="text" id="input4">
+    <script>
+        //属性,事件,方法
+        //文档加载完后执行
+        $(function () {
+            $.fn.cardInput = function () {
+                var id = $(this).attr('id');
+                var curInput = $(this);
+                $('body').append(
+                    `
+                <fieldset id="fieldset_${id}" class="box" style="display: none;">
+                    <legend>输入框id=${id}的刷卡框</legend>
+                    <button class="btn-request">发请求</button>
+                </fieldset>`
+                );
+                curInput.on('click', function () {
+                    $(`#fieldset_${id}`).show();
+                    curInput.trigger('boxShow');
+
+                })
+                function getData() {
+                    var defer = $.Deferred();
+
+                    setTimeout(function () {
+                        var data = {
+                            info: '数据'
+                        };
+                        defer.resolve(data);
+                    }, 3000)
+                    return defer.promise();
+
+                }
+                $(`#fieldset_${id} .btn-request`).on('click', function (event) {
+                    $.when(getData()).done(function (data) {
+                        curInput.val(data.info);
+                        curInput.trigger('dataReturn', data);
+                        $(`#fieldset_${id}`).remove();
+                    })
+                });
+            }
+
+        })
+        $(function () {
+            $('[data-toggle="cardInput"]').each(function (index, item) {
+                $(item).cardInput();
+            })
+        })
+        $(function () {
+            $('#input').on('boxShow', function (event, data) {
+                console.log('boxShow');
+            });
+            $('#input').on('dataReturn', function (event, data) {
+                console.log('dataReturn data', data);
+            });
+        })
+    </script>
+</body>
+
+</html>

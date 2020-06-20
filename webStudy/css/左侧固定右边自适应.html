@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左侧固定右边自适应</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+        }
+
+        .left-bar {
+            overflow: auto;
+            padding-top: 40px;
+        }
+
+
+        .left-bar.open {
+            flex: 0 1 260px;
+            transform: translateX(0)
+        }
+
+        .content {
+            flex: auto;
+            padding: 40px;
+        }
+
+        .transiton-1 {
+            transition: all 1s ease;
+        }
+
+        .transiton-2 {
+            transition: all 2s ease 2s;
+        }
+
+        .header-fixed {
+            display: none;
+        }
+
+        .header-fixed {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 30px;
+            display: none;
+            z-index: 111;
+        }
+
+        @media only screen and (max-width:1024px) {
+            .left-bar {
+                flex: 0 1 0;
+                transform: translateX(-260px)
+            }
+            .header-fixed {
+                display: block;
+
+            }
+        }
+
+        @media only screen and (min-width:1024px) {
+            .left-bar {
+                flex: 0 1 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-fixed bg4 open">
+        <button class="toggle">toggle</button>
+    </div>
+    <div class="left-bar bg1 transiton-1">
+        <div style="height: 1200px;">
+            left-bar 内容
+
+        </div>
+    </div>
+    <div class="content bg3">
+        content 内容
+    </div>
+
+    <script src="../plugin/jquery-3.2.1.min.js">
+    </script>
+
+    <script>
+        $(function () {
+            $('.toggle').on('click', function (event) {
+                $('.left-bar').toggleClass('open');
+            });
+        })
+    </script>
+
+</body>
+
+</html>

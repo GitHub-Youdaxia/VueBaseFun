@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .biaozhun {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-sizing: content-box;
+        }
+
+        .guaiyi {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>W3C标准盒子模型</legend>
+        <div class="biaozhun bg1">
+            <div class="content">
+                内容
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>IE标准盒子模型(怪异盒子模型)</legend>
+        <div class="guaiyi bg2">
+            <div class="content">
+                内容
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>总结</legend>
+        <p class="bg3">
+            标准盒模型:一个块的总宽度=width(content的宽度)+padding(左右)+border(左右)+margin(左右)
+        </p>
+        <p class="bg3">
+            IE标准盒子模型:一个块的总宽度=width(content+border+padding)+margin(左右)
+        </p>
+    </fieldset>
+
+
+</body>
+
+</html>

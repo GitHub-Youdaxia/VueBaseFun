@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <p>Hello</p>
+    <p>hello2</p>
+    <div style="height:2000px;">
+
+    </div>
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(function () {
+            // var p = $("p");
+            // var offset = p.offset();
+            // p.html("left: " + offset.left + ", top: " + offset.top);//获取元素当前的偏移位置
+            $("p").offset();
+            console.log("left:"+ $("p").offset().left,"top:"+$("p").offset().top);
+            var b=$("p:last").offset({left:100,top:130});
+            console.log($("p:last").offset());
+
+        })
+    </script>
+</body>
+
+</html>

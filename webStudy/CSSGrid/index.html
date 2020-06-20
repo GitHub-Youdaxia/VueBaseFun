@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CCS网格布局入门分享</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+</head>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+    }
+
+    .item-1 {
+        background-color: #ef342a;
+    }
+
+    .item-2 {
+        background-color: #f68f26;
+    }
+
+    .item-3 {
+        background-color: #4ba946;
+    }
+
+    .item-4 {
+        background-color: #0376c2;
+    }
+
+    .item-5 {
+        background-color: #c077af;
+    }
+
+    .item-6 {
+        background-color: #f8d29d;
+    }
+
+    .item-7 {
+        background-color: #b5a87f;
+    }
+
+    .item-8 {
+        background-color: #d0e4a9;
+    }
+
+    .item-9 {
+        background-color: #4dc7ec;
+    }
+
+    xmp {
+        margin-left: -40px;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 100px;
+    }
+    span.red{
+        color:red;
+        font-weight: bold;
+    }
+    p{
+        margin: 5px;
+    }
+</style>
+
+<body style="padding: 20px;">
+    参考文章：<a href="http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">CSS Grid 网格布局教程</a>
+
+    <h2>一、入门介绍</h2>
+    <ul>
+        <li><strong>容器</strong>（grid-container）：设置<code>display:grid</code>的元素。</li>
+        <li><strong>项目</strong>（item）：容器的直接子元素，父元素设置为<code>grid</code>布局，直接子元素自动就是项目（item）。</li>
+        <li><strong>分隔线</strong>：分为行分割线，列分割线，如下图，在3*3的网格布局中，4个行分割线，4个列分割线。</li>
+    </ul>
+    <div class="grid-container" style="height:500px;">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+    </div>
+    <xmp>
+        上面布局的源码
+        <div class="grid-container">
+            <div class="item item-1">1</div>
+            <div class="item item-2">2</div>
+            <div class="item item-3">3</div>
+            <div class="item item-4">4</div>
+            <div class="item item-5">5</div>
+            <div class="item item-6">6</div>
+            <div class="item item-7">7</div>
+            <div class="item item-8">8</div>
+            <div class="item item-9">9</div>
+        </div>
+        .grid-container {
+            display: grid;
+            grid-template-columns: 100px 100px 100px; //完全等同写法是 repeat(3,100px),也可以用百分比，也可用fr关键字(列与列之间的比例)，例如1fr 1fr 2fr,可以混合使用
+            grid-template-rows: 100px 100px 100px;
+        }
+    </xmp>
+    <h2>二、属性介绍</h2>
+
+    <table class="table table-bordered" style="width:800px">
+        <thead>
+            <tr>
+                <th>作用在grid容器上</th>
+                <th>作用在grid项目上</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="vertical-align: top;">
+                    <ul>
+                        <p>定义划分成的网格的大小</p>
+                        <li><a>grid-template-columns</a></li>
+                        <li><a>grid-template-rows</a></li>
+                        <li><a>grid-template-areas</a></li>
+                        <li><a>grid-template</a></li>
+                        <p>定义网格间距</p>
+                        <li><a>grid-column-gap</a></li>
+                        <li><a>grid-row-gap</a></li>
+                        <li><a>grid-gap</a></li>
+                        <p>统一定义单元格里内容在单元格内的对齐</p>
+                        <li><a>justify-items</a></li>
+                        <li><a>align-items</a></li>
+                        <li><a>place-items</a></li>
+                        <p>定义所有单元格在容器内的对齐</p>
+                        <li><a>justify-content</a></li>
+                        <li><a>align-content</a></li>
+                        <li><a>place-content</a></li>
+                        <p>用来设置，浏览器自动创建的多余网格的列宽和行高</p>
+                        <li><a>grid-auto-columns</a></li>
+                        <li><a>grid-auto-rows</a></li>
+                        <p>项目的放置顺序，默认先行后列</p>
+                        <li><a>grid-auto-flow</a></li>
+                        <li><a>grid</a></li>
+                    </ul>
+                </td>
+                <td style="vertical-align: top;">
+                    <ul>
+                        <p>项目指定自己在网格中的范围 </p>
+                        <li><a>grid-column-start</a></li>
+                        <li><a>grid-column-end</a></li>
+                        <li><a>grid-row-start</a></li>
+                        <li><a>grid-row-end</a></li>
+                        <li><a>grid-column</a></li>
+                        <li><a>grid-row</a></li>
+                        <li><a>grid-area</a></li>
+                        <p>项目单独指定自己内容的对齐方式 </p>
+                        <li><a>justify-self</a></li>
+                        <li><a>align-self</a></li>
+                        <li><a>place-self</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <h3>1.作用在grid容器上</h3>
+        <h4>1-1.grid-template-columns和grid-template-rows</h4>
+        <div style="padding-left: 30px;">
+            <h5>auto-fill</h5>
+            <p>使用场景：单元格的大小是固定的，但是容器的大小不确定。如果希望每一行（或每一列）容纳尽可能多的单元格，这时可以使用auto-fill关键字表示自动填充。
+                grid-template-columns: repeat(auto-fill, 100px); </p>
+            <h5>minmax</h5>
+            <p>使用场景：控制某一列最小和最大宽度。minmax()函数产生一个长度范围，表示长度就在这个范围之中。它接受两个参数，分别为最小值和最大值。grid-template-columns: 1fr 1fr
+                minmax(100px, 1fr);</p>
+
+            <h5>auto</h5>
+            <p>使用场景：某几列固定宽度，设置为auto的列平分剩下的所有空间。auto关键字表示由浏览器自己决定长度。grid-template-columns: 100px auto 100px;</p>
+        </div>
+        <div>
+            <h4>1-2.grid-gap</h4>
+            <div style="padding-left: 30px;">
+                <p>grid-gap属性是grid-column-gap和grid-row-gap的合并简写形式
+                </p>
+                <p>grid-row-gap属性设置行与行的间隔（行间距），grid-column-gap属性设置列与列的间隔（列间距）。</p>
+                <p>grid-gap: 20px 20px;</p>
+            </div>
+        </div>
+        <div>
+            <h4>1-3.justify-items 属性，
+                align-items 属性，
+                place-items 属性</h4>
+             <span class="red" style="padding-left: 30px;">设置所有单元格内容在单元格内的位置的对齐方式</span>
+            <div style="padding-left: 30px;">
+                <xmp>
+                    justify-items属性设置单元格内容的水平位置（左中右），
+                    align-items属性设置单元格内容的垂直位置（上中下）。
+                    place-items是上面两个属性的合写
+
+                    .container {
+                        justify-items: start | end | center | stretch;
+                        align-items: start | end | center | stretch;
+                    }
+                    这两个属性的写法完全相同，都可以取下面这些值。
+
+                    start：对齐单元格的起始边缘。
+                    end：对齐单元格的结束边缘。
+                    center：单元格内部居中。
+                    stretch：拉伸，占满单元格的整个宽度（默认值）。
+
+                    .container {
+                        justify-items: start;
+                    }
+                </xmp>
+            </div>
+        </div>
+        <div>
+            <h4>1-4.justify-content 属性，
+                align-content 属性，
+                place-content 属性</h4>
+            <span class="red" style="padding-left: 30px;">设置所有单元格的对齐方式</span>
+            <div style="padding-left: 30px;">
+                <xmp>
+                    justify-content属性是整个内容区域在容器里面的水平位置（左中右），
+                    align-content属性是整个内容区域的垂直位置（上中下）。
+                    place-content是上面两个属性的合写
+
+                    .container {
+                        justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
+                        align-content: start | end | center | stretch | space-around | space-between | space-evenly;
+                    }
+                </xmp>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3>2.作用在项目上</h3>
+        <h4>2-1.grid-column-start 属性，
+            grid-column-end 属性，
+            grid-row-start 属性，
+            grid-row-end 属性</h4>
+        <div style="padding-left: 30px;">
+            <xmp>
+                项目的位置是可以指定的，具体方法就是指定项目的四个边框，分别定位在哪根网格线。
+
+                grid-column-start属性：左边框所在的垂直网格线
+                grid-column-end属性：右边框所在的垂直网格线
+                grid-row-start属性：上边框所在的水平网格线
+                grid-row-end属性：下边框所在的水平网格线
+
+                grid-column 属性是 grid-column-start，grid-column-end合并写法
+                grid-row 属性是 grid-row-start，grid-row-end合并写法
+                .item-1 {
+                    grid-column: 1 / 3;
+                    grid-row: 1 / 2;
+                }
+                /* 等同于 */
+                .item-1 {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    grid-row-start: 1;
+                    grid-row-end: 2;
+                }
+                /* 上面属性值里的数字是网格线的索引，从1开始。*/
+            </xmp>
+        </div>
+        <h4>2-2.justify-self 属性，
+            align-self 属性，
+            place-self 属性</h4>
+        <div style="padding-left: 30px;">
+            <xmp>
+                justify-self属性设置单元格内容的水平位置（左中右），跟justify-items属性的用法完全一致，但只作用于单个项目。
+
+                align-self属性设置单元格内容的垂直位置（上中下），跟align-items属性的用法完全一致，也是只作用于单个项目。
+
+                place-self 属性是上面属性的合并写法
+
+                .item {
+                    justify-self: start | end | center | stretch;
+                    align-self: start | end | center | stretch;
+                }
+            </xmp>
+        </div>
+
+
+    </div>
+    <h2>三、简单实战应用</h2>
+    <div>
+        <h3>1.左侧固定，右侧自适应</h3>
+        <style>
+            #demo1 {
+                display: grid;
+                grid-template-columns: 200px auto;
+                height: 100px;
+            }
+        </style>
+        <div id="demo1">
+            <div class="left item-1">left</div>
+            <div class="right item-2">right</div>
+        </div>
+        <p>源码</p>
+        <xmp>
+            <style>
+                #demo1 {
+                    display: grid;
+                    grid-template-columns: 200px auto;
+                    height: 100px;
+                }
+            </style>
+            <div id="demo1">
+                <div class="left item-1">left</div>
+                <div class="right item-2">right</div>
+            </div>
+        </xmp>
+        <h3>2.左侧，右侧固定，中间自适应</h3>
+        <style>
+            #demo2 {
+                display: grid;
+                height: 100px;
+                grid-template-columns: 200px auto 200px;
+            }
+        </style>
+        <div id="demo2">
+            <div class="left item-1">left</div>
+            <div class="center item-2">center</div>
+            <div class="right item-3">center</div>
+        </div>
+        <p>源码</p>
+        <xmp>
+            <style>
+                #demo2 {
+                    display: grid;
+                    height: 100px;
+                    grid-template-columns: 200px auto 200px;
+                }
+            </style>
+            <div id="demo2">
+                <div class="left item-1">left</div>
+                <div class="center item-2">center</div>
+                <div class="right item-3">center</div>
+            </div>
+        </xmp>
+        <h3>3.后台一般布局</h3>
+        <style>
+            #demo3 {
+                display: grid;
+                height: 500px;
+                grid-template-columns: 140px auto;
+                grid-template-rows: 60px auto;
+            }
+        </style>
+        <div id="demo3">
+            <div class="logo item-1">logo</div>
+            <div class="header item-2">header</div>
+            <div class="leftBar item-3">leftBar</div>
+            <div class="main item-4">main</div>
+        </div>
+        <p>源码</p>
+        <xmp>
+            <style>
+                #demo3 {
+                    display: grid;
+                    height: 500px;
+                    grid-template-columns: 140px auto;
+                    grid-template-rows: 60px auto;
+                }
+            </style>
+            <div id="demo3">
+                <div class="logo item-1">logo</div>
+                <div class="header item-2">header</div>
+                <div class="leftBar item-3">leftBar</div>
+                <div class="main item-4">main</div>
+            </div>
+        </xmp>
+        <h3>4.稍微复杂点的布局</h3>
+        <!-- <img src="./img/grid.png" alt=""> -->
+        <style>
+            #demo4_ {
+                display: grid;
+                height: 800px;
+                grid-template-columns: repeat(3,auto);
+                grid-template-rows: repeat(3,200px);
+                grid-gap:20px;
+            }
+            #demo4_ .block1{
+                grid-row: 1/3;
+                grid-column: 1/3;
+            }
+            #demo4_ .block5{
+                grid-row: 2/4;
+                grid-column: 3/4;
+            }
+        </style>
+        <div id="demo4_">
+            <div class="block1 item-1">block1</div>
+            <div class="block2 item-2">block2</div>
+            <div class="block3 item-3">block3</div>
+            <div class="block4 item-4">block4</div>
+            <div class="block5 item-5">block5</div>
+        </div>
+        <style>
+            #demo4 {
+                display: grid;
+                height: 800px;
+                grid-template-columns: repeat(3,auto);
+                grid-template-rows: repeat(3,auto);
+            }
+        </style>
+        <div id="demo4">
+            <div class="block1 item-1">block1</div>
+            <div class="block2 item-2">block2</div>
+            <div class="block3 item-3">block3</div>
+            <div class="block4 item-4">block4</div>
+            <div class="block5 item-5">block5</div>
+        </div>
+        <xmp>
+
+        </xmp>
+
+        <div style="display: grid;align-items: center;justify-items: center;height: 200px;background:#4ba946;">
+            <div style="background: red;">内容</div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .bg1 {
+            background-color: #CCC;
+        }
+
+        .bg2 {
+            background-color: rgb(85, 64, 64);
+        }
+
+        .bg3 {
+            background-color: rgb(43, 9, 9);
+        }
+
+        .bg4 {
+            background-color: rgb(102, 110, 223);
+        }
+
+        .bg5 {
+            background-color: rgb(135, 219, 38);
+        }
+
+        .h20 {
+            height: 20px;
+        }
+
+        .h100 {
+            height: 100px;
+        }
+
+        .h500 {
+            height: 500px;
+        }
+
+        .box200 {
+            width: 100%;
+            height: 200px;
+        }
+
+        .box50 {
+            width: 50px;
+            height: 50px;
+            margin: 6px;
+        }
+
+        .box30 {
+            width: 30px;
+            height: 30px;
+            margin: 6px;
+        }
+
+        .box10 {
+            width: 10px;
+            height: 10px;
+            margin: 6px;
+        }
+    </style>
+</head>
+<style>
+    .parent1 {
+        display: flex;
+    }
+
+    .child1 {}
+
+    .parent2 {
+        display: flex;
+    }
+
+    .child2 {
+        margin: auto;
+    }
+
+    .parent3 {
+        display: flex;
+    }
+
+    .child3 {
+        flex: auto
+    }
+
+
+    .parent4 {
+        display: flex;
+    }
+
+    .child4 {
+        flex: initial
+    }
+
+    .parent5 {
+        display: flex;
+    }
+
+    .child5 {
+        flex: none
+    }
+
+    .parent6 {
+        display: flex;
+    }
+
+    .child6 {
+        flex-grow: 4
+    }
+
+    .parent7 {
+        display: flex;
+    }
+
+    .child7-1 {
+        flex-basis:200px;
+    }
+
+    .child7-2 {
+        flex-grow: 1;
+        display: flex;
+    }
+    .child7-2-1 {
+        margin: auto;
+    }
+</style>
+
+<body style="padding-bottom: 500px;">
+    <p>[ flex-grow ]：定义弹性盒子元素的扩展比率。弹性容器的宽度去掉自己的padding,去掉弹性子元素的flex-basis和margin,剩下未分配的空间,所有弹性子元素按flex-grow的值的比例进行分配
+        </p>
+    <fieldset>
+        <legend>父元素display: flex;子元素默认排列在一行</legend>
+        <div class="parent1 bg1 h100">
+            <div class="child1 bg2 box30">1</div>
+            <div class="child1 bg2 box30">2</div>
+            <div class="child1 bg2 box30">3</div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>子元素在父元素上下左右都居中</legend>
+        设置"margin"值为"auto"值，自动获取弹性容器中剩余的空间。所以设置垂直方向margin值为"auto"，可以使弹性子元素在弹性容器的两上轴方向都完全集中。
+        <div class="parent2 bg1 h100">
+            <div class="child2 bg2 box50"></div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>flex:auto: 计算值为 1 1 auto</legend>
+        <div class="parent3 bg1 h100">
+            <div class="child3 bg2 box50"></div>
+            <div class="child3 bg3 box50"></div>
+        </div>
+
+    </fieldset>
+    <fieldset>
+        <legend>
+            flex:initial: 计算值为 0 1 auto,
+        </legend>
+        <div class="parent4 bg1 h100">
+            <div class="child4 bg2 box50"></div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend> flex:none：计算值为 0 0 auto,</legend>
+        <div class="parent5 bg1 h100">
+            <div class="child5 bg2 box50"></div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend> 4*4*4</legend>
+        <div class="parent6 bg1 h100">
+            <div class="child6 bg2 h100"></div>
+            <div class="child6 bg3 h100"></div>
+            <div class="child6 bg4 h100"></div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>左侧固定宽度,右侧自适应</legend>
+        <div class="parent7 bg1 h100">
+            <div class="child7-1 bg2 h100">固定宽度flex-basis:200px;</div>
+            <div class="child7-2 bg3 h200">
+                <div class="child7-2-1 bg4 box50"></div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <style>
+            .parent8{display: flex;}
+            .child8-1{flex-basis: 100px;flex-grow: 1}
+            .child8-2{flex-basis: 200px;flex-grow: 1}
+        </style>
+        <legend>flex-grow,flex-shrink</legend>
+        <div class="parent8 bg1 h100">
+            <div class="child8-1 bg2 h100">固定宽度flex-basis:100px;</div>
+            <div class="child8-2 bg3 h100">
+                    固定宽度flex-basis:200px;
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <style>
+            .parent9{display: flex;flex-direction:column;}
+            .child9-1{flex-grow: 1}
+            .child9-2{flex-grow: 1}
+        </style>
+        <legend>若有一个子元素,高度100%,若有两个子元素,则各占50%</legend>
+        <div class="parent9 bg1 h100">
+            <div class="child9-1 bg2 "></div>
+            <div class="child9-2 bg3 ">
+            </div>
+        </div>
+    </fieldset>
+
+    <script src="src/jquery-3.2.1.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            height: 120px;
+            background-color: bisque;
+        }
+
+        .main {
+            flex-grow: 1;
+            background: grey;
+            display: flex;
+        }
+
+        .main-left {
+            flex-basis: 400px;
+            flex-shrink: 0;
+        }
+
+        .main-right {
+            flex-basis: 400px;
+            flex-shrink: 0;
+        }
+
+        .main-contain {
+            background-color: #006699;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <header></header> -->
+    <div class="main">
+        <div class="main-left"></div>
+        <div class="main-contain"></div>
+        <div class="main-right"></div>
+    </div>
+</body>
+
+</html>

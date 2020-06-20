@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="h1"></h1>
+    <input id="input" type="text">
+    <br>
+    <input id="input2" type="text">
+
+
+    <script>
+        var book = {
+            _year: 2004,
+            edition: 1
+        };
+        Object.defineProperty(book, "year", {
+            get() {
+                return this._year;
+            },
+            set(newValue) {
+                // if (newValue > 2004) {
+                    this._year = newValue;
+                    // this.edition += newValue - 2004;
+                    document.querySelector('#h1').innerText = this._year;
+                // }
+            }
+        });
+        document.querySelector('#input').addEventListener('input', function () {
+            book.year = this.value;
+        }, false);
+        document.querySelector('#input2').addEventListener('input', function () {
+            book.year = this.value;
+        }, false);
+        setInterval(function(){
+            if( document.querySelector('#input').value != document.querySelector('#h1').innerText){
+                document.querySelector('#input').value = document.querySelector('#h1').innerText;
+            }
+        },100)
+    </script>
+</body>
+
+</html>

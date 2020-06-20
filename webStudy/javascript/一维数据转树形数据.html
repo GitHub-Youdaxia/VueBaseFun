@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一维数据转树形数据</title>
+</head>
+
+<body>
+
+
+  <script>
+    var list = [{
+        "id": 1,
+        "pId": 0,
+        "name": "父节点1 - 展开",
+        "open": true
+      },
+      {
+        "id": 11,
+        "pId": 1,
+        "name": "父节点11 - 折叠"
+      },
+      {
+        "id": 12,
+        "pId": 1,
+        "name": "父节点12 - 折叠"
+      },
+      {
+        "id": 13,
+        "pId": 1,
+        "name": "父节点13 - 没有子节点"
+      },
+      {
+        "id": 2,
+        "pId": 0,
+        "name": "父节点2 - 折叠"
+      },
+      {
+        "id": 21,
+        "pId": 2,
+        "name": "父节点21 - 展开",
+        "open": true
+      },
+      {
+        "id": 22,
+        "pId": 2,
+        "name": "父节点22 - 折叠"
+      },
+      {
+        "id": 23,
+        "pId": 2,
+        "name": "父节点23 - 折叠"
+      },
+      {
+        "id": 233,
+        "pId": 23,
+        "name": "父节点233 - 折叠"
+      },
+      {
+        "id": 3,
+        "pId": 0,
+        "name": "父节点3 - 没有子节点"
+      }
+    ];
+    list.forEach(node => {
+      node.children = []
+    })
+    list.forEach(node => {
+      for (let i = 0; i < list.length; i++) {
+        if (node.id === list[i].pId) {
+          node.children.push(list[i])
+          list[i].beenChild = true // 成为字节点
+        }
+      }
+    })
+    // 去掉已经成为child的元素
+    list = list.filter(item => {
+      return !item.beenChild
+    })
+    console.log(list);
+  </script>
+</body>
+
+</html>
