@@ -3,7 +3,7 @@ import customEvent from './customEvent'
 const MyPlugin = {}
 MyPlugin.install = function (Vue, options) {
     // (1)将自定义事件作为一个全局对象来使用
-    window.customEvent = customEvent
+    window.customEvent = customEvent // 在vue项目中可以被Vue.prototype.EventBus = new Vue()取代
 
     // (2)注册全局组件
     // require.context模块返回一个函数，这个函数可以接收一个参数

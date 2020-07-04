@@ -75,7 +75,7 @@ export default {
         item1.children.length === 0 ? item1.leaf = true : item1.leaf = false
       });
       let res = data.filter(item => !item.isChild)
-      console.log(res)
+      // console.log(res)
       return res
     },
     getAllData () {

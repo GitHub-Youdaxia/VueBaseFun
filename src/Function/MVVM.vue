@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     handleAdd() {
-      mvvm.list.push(Math.random())
+      // mvvm.list.push(Math.random())
     }
   }
 }

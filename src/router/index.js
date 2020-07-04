@@ -55,6 +55,10 @@ export const constantRoutes =  [
       path: '/other',
       name: '功能Demo',
       component: () => import('@/views/myStudy/other'),
+      // 在layout组件中用keep-alive标签控制缓存该组件缓存
+      meta:{
+        keepAlive:true
+      }
     }
   ]
   },
@@ -82,7 +86,22 @@ export const asyncRoutes = [
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  // scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior(to, from, savedPosition) {
+    // 使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。    
+    console.log(to, from, savedPosition)
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      // console.log(from.meta.keepAlive)
+      if (from.meta.keepAlive) {
+        // 注意滚动条是需要body出现的
+        from.meta.savedPosition = document.body.scrollTop
+      }
+      // 控制的body的滚动位置
+      return { x: 0, y: to.meta.savedPosition || 0 }
+    }
+  },
   routes: constantRoutes
 })
 

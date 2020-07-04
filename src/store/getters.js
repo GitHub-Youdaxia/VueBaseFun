@@ -11,5 +11,6 @@ const getters = {
   // roles: state => state.user.roles,
   permission_routes: state => state.permission.routes,
   // errorLogs: state => state.errorLog.logs
+  num: state => { return 'vuex模块test里的num值：' + state.test.num }
 }
 export default getters
