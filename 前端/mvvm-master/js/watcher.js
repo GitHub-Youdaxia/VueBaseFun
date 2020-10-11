@@ -3,13 +3,13 @@ function Watcher(vm, expOrFn, cb) {
     this.vm = vm;
     this.expOrFn = expOrFn;
     this.depIds = {};
-
+    this.key = expOrFn
     if (typeof expOrFn === 'function') {
         this.getter = expOrFn;
     } else {
         this.getter = this.parseGetter(expOrFn.trim());
     }
-
+    // 在this.get方法里触发expOrFn的get劫持
     this.value = this.get();
 }
 
@@ -26,7 +26,9 @@ Watcher.prototype = {
             this.cb.call(this.vm, value, oldVal);
         }
     },
+    // 每次触发expOrFn的get劫持都会触发addDep,而addDep调用时,会把当前watcher添加到vm.expOrFn的依赖收集器dep的subs中，为避免vm.expOrFn的依赖收集器dep的subs重复，所以每次会判重
     addDep: function(dep) {
+        // console.log(dep)
         // 1. 每次调用run()的时候会触发相应属性的getter
         // getter里面会触发dep.depend()，继而触发这里的addDep
         // 2. 假如相应属性的dep.id已经在当前watcher的depIds里，说明不是一个新的属性，仅仅是改变了其值而已
@@ -48,6 +50,7 @@ Watcher.prototype = {
     },
     get: function() {
         Dep.target = this;
+        // this.getter会触发在defineReactive方法里用Object.defineProperty里给expOrFn定义的get劫持，get劫持执行时，在get劫持里会判断Dep.target，而此时全局Dep.target是有值的
         var value = this.getter.call(this.vm, this.vm);
         Dep.target = null;
         return value;

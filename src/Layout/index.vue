@@ -20,7 +20,7 @@
           </dl>
         
       </div>
-      <div>
+      <div class="main">
         <div style="line-height:30px;background:#CCC">{{route}}</div>
         <div class="main-box">
           <router-view v-if="!$route.meta.keepAlive"></router-view>
@@ -45,7 +45,7 @@ export default {
         }
     },
     created () {
-      console.log(this)
+      // console.log(this)
     },
     watch:{
         $route:{
@@ -75,6 +75,9 @@ export default {
 </script>
 
 <style>
+.main{
+  min-width: 500px;
+}
 .body {
     height: 100%;
     display: grid;

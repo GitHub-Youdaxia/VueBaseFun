@@ -11,6 +11,7 @@ function Compile(el, vm) {
 
 Compile.prototype = {
     constructor: Compile,
+    // 创建虚拟节点
     node2Fragment: function(el) {
         var fragment = document.createDocumentFragment(),
             child;
@@ -22,11 +23,11 @@ Compile.prototype = {
 
         return fragment;
     },
-
+    // 初始化数据到节点中
     init: function() {
         this.compileElement(this.$fragment);
     },
-
+    // 递归遍历子节点，根据节点的
     compileElement: function(el) {
         var childNodes = el.childNodes,
             me = this;
@@ -34,20 +35,20 @@ Compile.prototype = {
         [].slice.call(childNodes).forEach(function(node) {
             var text = node.textContent;
             var reg = /\{\{(.*)\}\}/;
-
+            // 编译元素节点
             if (me.isElementNode(node)) {
                 me.compile(node);
-
+                // 编译文本节点 修改节点的必要条件 me.$vm, 表达式 exp ,节点
             } else if (me.isTextNode(node) && reg.test(text)) {
                 me.compileText(node, RegExp.$1.trim());
             }
-
+            // 递归有子节点的节点
             if (node.childNodes && node.childNodes.length) {
                 me.compileElement(node);
             }
         });
     },
-
+    // 编译元素节点需要遍历元素的属性
     compile: function(node) {
         var nodeAttrs = node.attributes,
             me = this;
@@ -120,15 +121,16 @@ var compileUtil = {
     class: function(node, vm, exp) {
         this.bind(node, vm, exp, 'class');
     },
-
+    // 每一个exp都有自己的updaterFn,updaterFn使用exp的值和dir来修改dom对应的值 dir的值，text,html,model等等
     bind: function(node, vm, exp, dir) {
         var updaterFn = updater[dir + 'Updater'];
 
         updaterFn && updaterFn(node, this._getVMVal(vm, exp));
-
-        new Watcher(vm, exp, function(value, oldValue) {
+        // 每一个值都有实例化一个Watcher
+        watcherArr.push(new Watcher(vm, exp, function(value, oldValue) {
             updaterFn && updaterFn(node, value, oldValue);
-        });
+        }))
+        
     },
 
     // 事件处理

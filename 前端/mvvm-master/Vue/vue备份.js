@@ -1048,6 +1048,14 @@
           }
         }
         return value
+        /*
+        <div>{{cusForm.name}}</div>
+        */ 
+        /*
+        this.cusForm = {
+          name:''
+        }
+        */ 
       },
       set: function reactiveSetter (newVal) {
         var value = getter ? getter.call(obj) : val;

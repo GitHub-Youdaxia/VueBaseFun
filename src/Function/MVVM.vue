@@ -1,17 +1,22 @@
 <template>
   <div>
-    <el-button type="primary" @click="handleAdd">添加</el-button>
-    <ul id="list"></ul>
+  components: {
+    'demo': () => import('@/demo') // 异步加载组件
+  },    
+    <div style="background:#CCC">
+      <demo></demo>
+    </div>
   </div>
 </template>
 
 <script>
-// import mvvm from '@/commonJS/mvvm'
-// console.log(mvvm)
-let mvvm = null
+
 export default {
   name: "MVVM",
   title: "proxy监测数组和对象",
+  components: {
+    'demo': () => import('@/demo') // 异步加载组件
+  },
   data() {
     return {
       mvvm: null,
@@ -21,10 +26,7 @@ export default {
 
   },
   mounted () {
-    // import('@/commonJS/mvvm').then((res) =>{
-    //   console.log(res)
-    //   mvvm = res.default
-    // })
+
   },
   methods: {
     handleAdd() {

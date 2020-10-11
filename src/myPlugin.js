@@ -1,3 +1,5 @@
+import toastComponent from './extend/toast'
+import confirm from './extend/confirm'
 // 全局自定义事件对象
 import customEvent from './customEvent' 
 const MyPlugin = {}
@@ -38,12 +40,27 @@ MyPlugin.install = function (Vue, options) {
         Vue.component(componentEntity.name, componentEntity)
     })
 
-
-
-
-
-
-
+    // (5) 使用vue的extend，以vue文件为基础组件，返回一个可以创建vue组件的特殊构造函数
+    const ToastConstructor =  Vue.extend(toastComponent)
+    function showToast(text,duration = 2000){
+      const toastDom = new ToastConstructor({
+          el : document.createElement('div'),
+          data(){
+              return {
+                  text:text,
+                  show:true
+              }
+          }
+      })
+  　　//在body中动态创建一个div元素，后面自动会把它替换成整个vue文件内的内容
+      document.body.appendChild(toastDom.$el)
+      setTimeout(() => {
+        // toastDom.show=false
+      },duration)
+    }
+    Vue.prototype.$toast = showToast
+    // (6) 自定义确认弹窗
+    Vue.prototype.$confirm2 = confirm
 
 
 

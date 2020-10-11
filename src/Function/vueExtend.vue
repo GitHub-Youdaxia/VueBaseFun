@@ -1,58 +1,40 @@
 <template>
-  <div>
-    <ExSwitch v-model="ExSwitchFlag" :beforeChange="handleBeforeChange"></ExSwitch>
+  <div id="extend">
+    Extend用法
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+
+const testComponent = Vue.extend({
+  template: '<div>{{ text }}</div>',
+  data: function () {
+    return {
+      text: 'extend test'
+    }
+  }
+})
+const extendComponent = new testComponent().$mount()
+console.log(extendComponent)
 export default {
-  name: "vueExtend",
-  title: "扩展elementUI switch组件",
+  name: "vue.Extend用法",
+  title: "vue.Extend用法",
   data() {
-    var checkaaa = (rule, value, callback) => {
-      if (this.ruleForm.tagArr.length){
-        callback();
-      }
-      callback(new Error("不通过"));
-    };
     return {
       ExSwitchFlag: true,
     };
   },
+  mounted () {
+    document.querySelector('#extend').append(extendComponent.$el)
+  },  
   methods: {
     handleBeforeChange() {
-      return this.$confirm('确定要切换吗？','提示')      
     }
   }
 };
 </script>
 
 <style scoped>
-.card-box {
-  display: grid;
-}
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #99a9bf;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 100px;
-}
-.des {
-  width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-}
+
 </style>
