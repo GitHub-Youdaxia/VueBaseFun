@@ -2,15 +2,12 @@
   <div>
 	<span>姓名：{{$store.state.user.name}}</span>
 	<span>介绍：{{$store.state.user.introduction}}</span>
-		<render style="float:right"></render>
   </div>
 </template>
 
 <script>
-import render from '@/Layout/render';
 export default {
 		name: 'headerNav',
-		components: { render },
 		data () {
 			return {
 

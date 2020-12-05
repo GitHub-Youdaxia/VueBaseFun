@@ -1,8 +1,10 @@
 
+<script>
 import { Switch } from 'element-ui'
 export default {
   name: 'ExSwitch',
-  mixins: [Switch],
+  // mixins: [Switch],
+  extends: Switch,
   props: {
     beforeChange: {
       type: Function,
@@ -28,3 +30,8 @@ export default {
     }
   }
 }
+</script>
+
+<style>
+
+</style>

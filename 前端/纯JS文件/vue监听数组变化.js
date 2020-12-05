@@ -1,43 +1,59 @@
 
-const arrayProto = Array.prototype // 获取Array的原型
- 
 function def (obj, key) {
     Object.defineProperty(obj, key, {
-        enumerable: true,
-        configurable: true,
         value: function(...args) {
-            console.log(key); // 控制台输出 push
-            console.log(args); // 控制台输出 [Array(2), 7, "hello!"]
-            
-            // 获取原生的方法
-            let original = arrayProto[key];
-            // 将开发者的参数传给原生的方法，保证数组按照开发者的想法被改变
-            const result = original.apply(this, args);
- 
-            // do something 比如通知Vue视图进行更新
-            console.log('我的数据被改变了，视图该更新啦');
-            this.text = 'hello Vue';
+            const result = Array.prototype[key].apply(this, args);
+            console.log(this,'我的数据被改变了，视图该更新啦');
             return result;
         }
     });
 }
- 
-// 新的原型
-let obj = {
-    push() {}
+ // 变异方法名称
+ var methodsToPatch = ['push','pop','shift','unshift','splice','sort','reverse']
+ var specialArr = []
+ methodsToPatch.forEach(item => {
+  def(specialArr, item);
+ })
+ var arr = []
+ arr.__proto__ = specialArr
+ arr.push(1,2)
+
+
+
+function def(obj, key) {
+  Object.defineProperty(obj, key, {
+    value: function (...arg) {
+      let result = Array.prototype[key].apply(this,arg)
+      console.log('视图修改');
+      return
+    }
+  })
 }
- 
-// 重写赋值
-def(obj, 'push');
- 
-let arr = [0];
- 
-// 原型的指向重写
-arr.__proto__ = obj;
- 
-// 执行push
-arr.push([1, 2], 7, 'hello!');
-console.log(arr);
+var methods = ['push','pop','shift','unshift','sort','splice','reverse']
+var specialArr = []
+methods.forEach(item => {
+  def(specialArr,item)
+})
+var arr = []
+arr.__proto__=specialArr
+arr.push(1,2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 console.log('start')

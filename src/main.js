@@ -11,7 +11,15 @@ import store from './store'
 import myPlugin from './myPlugin'
 import  './permission'
 import 'babel-polyfill'
+import VueLazyload from 'vue-lazyload'
+
 Vue.use(Cookies)
+Vue.use(VueLazyload, {
+  preLoad: 1,
+  error: './static/img/error.gif',
+  loading: './static/img/loading.gif',
+  attempt: 1
+})
 
 Vue.use(myPlugin)
 
@@ -20,9 +28,6 @@ Vue.use(ElementUI, {
 })
 Vue.config.productionTip = false
 
-
-import ExSwitch from '@/components/ExSwitch'
-Vue.component('ExSwitch', ExSwitch)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

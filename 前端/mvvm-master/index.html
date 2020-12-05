@@ -7,10 +7,10 @@
 <body>
 	<div id="vue-app">
 		<p>{{word}}</p>
-		<p>{{word2}}</p>
 		<p>{{cusForm.name}}</p>
-		<p>{{cusForm.height}}</p>
-		<p>{{cusForm.age}}</p>
+		<ul>
+			<li v-for="item in arr">{{item}}</li>
+		</ul>
 	</div>
 
 	<script src="./Vue/vue.js"></script>
@@ -19,11 +19,11 @@
 			el: '#vue-app',
 			data: {
 				word: 'Hello World!',
-				word2: 'Hello World2!',
 				cusForm: {
 					name: '小明',
 					// height: '180'
-				}
+				},
+				arr: ['a','b','c']
 			},
 
 			methods: {

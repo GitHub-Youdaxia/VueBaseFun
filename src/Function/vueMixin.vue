@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h2>mixin和extends区别</h2>
+    <p>extends只能传一个组件进行扩展，比mixin先执行</p>
     <ExSwitch v-model="ExSwitchFlag" :beforeChange="handleBeforeChange"></ExSwitch>
   </div>
 </template>
@@ -7,7 +9,7 @@
 <script>
 export default {
   name: "vueMixin",
-  title: "扩展elementUI switch组件",
+  title: "vueMixin扩展elementUI switch组件",
   data() {
     var checkaaa = (rule, value, callback) => {
       if (this.ruleForm.tagArr.length){
