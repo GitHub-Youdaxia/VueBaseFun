@@ -63,7 +63,9 @@ MyPlugin.install = function (Vue, options) {
     Vue.prototype.$confirm2 = confirm
 
 
-
+    Vue.prototype.$myStore = {
+      name:'游大侠'
+    }
 
 
 

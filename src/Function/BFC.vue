@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>BFC的区域不会与float box重叠。</div>
+    <!-- <div>BFC的区域不会与float box重叠。</div> -->
+    <div>{{text}}</div>
     <div class="test1">
       <div class="item1" >float区域</div>
       <div class="item2" >BFC区域</div>
@@ -21,6 +22,7 @@ export default {
   title: "BFC效果",
   data() {
     return {
+      text: '',
       ExSwitchFlag: true,
     };
   },

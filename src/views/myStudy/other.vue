@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  export default {
+let option = {
     data() {
       return {
         activeName: 'second',
@@ -27,6 +27,8 @@
       }
     }
   };
+  console.log(option);
+  export default option
 </script>
 
 <style>

@@ -7,6 +7,12 @@ str.match(pattern ); // 返回匹配到的标签数组 ["<span id='detail' style
 var str2= str.match(pattern ) && str.match(pattern ).length > 0 ? str.replace(/<[^>]+>/g, "") : str;//str2 = "查看详情"  
 
 var pattern = /<[^>]+>/g;
+
+
+
+
+
+
 var htmlStr = `<div id="asideProfile" class="aside-box">
 <div class="profile-intro d-flex">
     <div class="avatar-box d-flex justify-content-center flex-column">
@@ -27,7 +33,10 @@ var htmlStr = `<div id="asideProfile" class="aside-box">
     </div>
 </div>
 </div>`
-htmlStr.match(pattern)
+// console.log(htmlStr.match( /<[^>]+>/g));
+console.log(htmlStr.match( /<[^\s\/]+\s/g));
+// console.log(htmlStr.match(/<[^>]+\s?$/g));
+// /<[^>]+>/g
 
 
 

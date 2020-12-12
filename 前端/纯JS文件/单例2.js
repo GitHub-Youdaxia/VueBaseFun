@@ -1,10 +1,10 @@
 
 
 
+function A () {
+  this.title = '单例'
+}
 function Singgle () {
-  function A () {
-    this.title = '单例'
-  }
   let single
   return () => {
     if (!single) {

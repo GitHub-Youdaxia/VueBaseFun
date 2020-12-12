@@ -46,6 +46,7 @@ export default {
     },
     created () {
       // console.log(this)
+      this.$router.push({path:'/other'})
     },
     watch:{
         $route:{

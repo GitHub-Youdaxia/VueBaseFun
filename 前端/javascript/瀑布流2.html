@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瀑布流</title>
+</head>
+<body>
+    <h2><a href="https://blog.csdn.net/weixin_42833042/article/details/85111521" target="_blank"
+            rel="noopener noreferrer">瀑布流</a></h2>
+      <style>
+        .waterfall { position: relative;}
+        .waterfall .img-box {position: absolute;width: 200px;transition: all .4s;text-align: center;}
+        .waterfall .img-box img { width: 90%;}
+    </style>            
+    <div class="waterfall">
+    </div>
+    <script src="../common/plugin/jquery-3.2.1.min.js"></script>
+    <script>
+        var htmlStr = Array(36).fill('').map((item, index) => `<div class="img-box"><img src="../common/img/name (${index + 1}).jpg" ></div>`).join('')
+        $('.waterfall').html(htmlStr)
+        var contentW, imgBoxW,colNum,colNumTop
+        function init () {
+           contentW = $('.waterfall').width()
+           imgBoxW = $('.img-box').width()
+           colNum = parseInt(contentW/imgBoxW)
+           colNumTop = Array(colNum).fill(0)
+        }
+        function getMinAndIndex () {
+          var minTop = Math.min(...colNumTop)
+          var minIndex = colNumTop.findIndex(item => item === minTop)
+          return {minTop, minIndex}
+        }
+        function setImgBoxPosition ($ele) {
+          let {minTop, minIndex} = getMinAndIndex()
+          $ele.css({left: minIndex * imgBoxW,top: minTop})
+          colNumTop[minIndex] += $ele.height()  
+        }
+        $('.waterfall img').on('load',function(){
+          setImgBoxPosition($(this).parent())
+        })
+        $(window).on('resize', function(){
+          init()
+          $('.waterfall .img-box').each((index,item) => {
+            setImgBoxPosition($(item))
+          })
+        })
+        init()
+    </script>    
+</body>
+
+</html>

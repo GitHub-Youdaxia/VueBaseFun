@@ -17,10 +17,10 @@ export default {
 			// console.log(this.$store.state.user.name);
 			// console.log(customEvent);
 			// 使用自定义事件对象触发事件
-			setInterval(() => {
-				window.customEvent.fireEvent({type:'orderProcess',data:{info:'快完成了'}})
-				this.EventBus.$emit('test',{data:[]})
-			}, 3000);
+			// setInterval(() => {
+			// 	window.customEvent.fireEvent({type:'orderProcess',data:{info:'快完成了'}})
+			// 	this.EventBus.$emit('test',{data:[]})
+			// }, 3000);
 			// console.log();
 		}
 }
