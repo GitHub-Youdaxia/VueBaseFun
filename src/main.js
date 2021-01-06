@@ -28,6 +28,8 @@ Vue.use(ElementUI, {
 })
 Vue.config.productionTip = false
 
+const state = Vue.observable({ count: 0 })
+Vue.prototype.myState = state
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

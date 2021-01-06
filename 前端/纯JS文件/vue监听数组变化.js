@@ -83,3 +83,49 @@ new Promise((resolve,reject) => {
 })
 console.log('end')
 // start  5  end  1 6 7 8 2 3 4
+
+
+
+
+
+
+
+function def(obj, key,value,enumerable) {
+  Object.defineProperty(obj,key,{
+    value: value,
+    enumerable:!!enumerable,
+    writable:true,
+    configurable:true
+  })
+}
+
+const arrayMethods = Object.create(Array.prototype)
+const methodsToPatch = ['push','pop','shift','unshift','splice','reverse']
+
+methodsToPatch.forEach(method => {
+  def(arrayMethods, method, function(...rest) {
+    let res =  Array.prototype[method].apply(this, rest)
+    let ob = this.__ob__
+    let insert
+    switch (method) {
+      case 'push':
+      case 'unshift':
+        insert = rest
+        break;
+      case 'splice':
+        insert = rest.slice(2)
+      default:
+        break;
+    }
+    if (insert) console.log('执行的插入，调用ob.observeArr');
+    return res
+  })
+})
+
+function protoAugment (target, src) {
+  target.__proto__ = src
+}
+var arr = []
+protoAugment(arr,arrayMethods)
+
+

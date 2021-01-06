@@ -153,11 +153,11 @@ function binarySearch(arr,findval,leftIndex,rightIndex){
 		if(midval>findval){
 				//左边找
 				binarySearch(arr,findval,leftIndex,midIndex);
-				alert("left");
+				console.log("left");
 		}else if(midval<findval){
 				//右边找
 				binarySearch(arr,findval,midIndex,rightIndex);
-				alert("right");
+				console.log("right");
 		}else {
 				console.log("找到下标为" +midIndex);
 		}
