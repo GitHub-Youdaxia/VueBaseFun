@@ -68,7 +68,8 @@ MyPlugin.install = function (Vue, options) {
     }
 
 
-
+    const state = Vue.observable({ count: 0 })
+    Vue.prototype.myState = state
 
 
 

@@ -12,7 +12,7 @@ import myPlugin from './myPlugin'
 import  './permission'
 import 'babel-polyfill'
 import VueLazyload from 'vue-lazyload'
-
+import 'vue-organization-chart/dist/orgchart.css'
 Vue.use(Cookies)
 Vue.use(VueLazyload, {
   preLoad: 1,
@@ -28,8 +28,7 @@ Vue.use(ElementUI, {
 })
 Vue.config.productionTip = false
 
-const state = Vue.observable({ count: 0 })
-Vue.prototype.myState = state
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
